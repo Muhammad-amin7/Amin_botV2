@@ -17,7 +17,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const bot = new Telegraf(process.env.TOKEN);
+export const bot = new Telegraf(process.env.TOKEN);
+
+import "./src/cron/index.cron.js"
 
 bot.hears("/start", async (ctx) => {
       const wtr = await waterController(ctx)
