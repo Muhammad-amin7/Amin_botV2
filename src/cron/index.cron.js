@@ -1,7 +1,7 @@
 import schedule from "node-schedule";
 import fs from "fs";
-import { bot } from "../..";
-import { getDate } from "../utils/date";
+import { bot } from "../../index.js";
+import { getDate } from "../utils/date.js";
 
 schedule.scheduleJob("55 18 * * *", () => {
       const DB = JSON.parse(fs.readFileSync("data.json", "utf8"));
