@@ -61,3 +61,14 @@ schedule.scheduleJob("10 19 * * *", async () => {
             console.error("Xatolik:", error);
       }
 });
+
+schedule.scheduleJob("* * * * *", () => {
+      const DB = JSON.parse(fs.readFileSync("data.json", "utf8"));
+      const users = Object.keys(DB).filter(id => DB[id].namaz_notification);
+
+      users.forEach(id => {
+            bot.sendMessage(id, `I am working`);
+      });
+});
+
+
