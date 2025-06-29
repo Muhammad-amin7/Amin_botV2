@@ -10,7 +10,7 @@ schedule.scheduleJob("55 18 * * *", () => {
 
       users.forEach(id => {
             const water = DB[id]["water"]?.[today] || 0;
-            bot.sendMessage(id, `Bugungi umumiy ichilgan suv miqdori: ${water} ml`);
+            bot.telegram.sendMessage(id, `Bugungi umumiy ichilgan suv miqdori: ${water} ml`);
       });
 });
 
@@ -20,7 +20,7 @@ schedule.scheduleJob("0 19 * * *", () => {
 
       const times = getNamozTime();
       users.forEach(id => {
-            bot.sendMessage(id, `🕌 Bugungi namoz vaqtlari:\n\n${times}`);
+            bot.telegram.sendMessage(id, `🕌 Bugungi namoz vaqtlari:\n\n${times}`);
       });
 });
 
@@ -53,7 +53,7 @@ schedule.scheduleJob("10 19 * * *", async () => {
                         const users = Object.keys(DB).filter(id => DB[id].namaz_notification);
 
                         users.forEach(id => {
-                              bot.sendMessage(id, `⏰ Eslatma: ${nomozNomi.toUpperCase()} namoziga 20 daqiqa qoldi.`);
+                              bot.telegram.sendMessage(id, `⏰ Eslatma: ${nomozNomi.toUpperCase()} namoziga 20 daqiqa qoldi.`);
                         });
                   });
             });
@@ -61,14 +61,3 @@ schedule.scheduleJob("10 19 * * *", async () => {
             console.error("Xatolik:", error);
       }
 });
-
-schedule.scheduleJob("* * * * *", () => {
-      const DB = JSON.parse(fs.readFileSync("data.json", "utf8"));
-      const users = Object.keys(DB).filter(id => DB[id].namaz_notification);
-
-      users.forEach(id => {
-            bot.sendMessage(id, `I am working`);
-      });
-});
-
-
